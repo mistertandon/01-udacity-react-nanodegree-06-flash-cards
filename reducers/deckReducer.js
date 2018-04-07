@@ -1,6 +1,6 @@
 import { DECK_LIST } from './../actions/deckAction'
 
-function deckReducer(state = { decks: [] }, action) {
+function deckReducer(state = { deckList: [] }, action) {
 
   switch (action.type) {
 

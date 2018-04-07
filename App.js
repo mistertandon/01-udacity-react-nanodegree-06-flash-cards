@@ -14,7 +14,9 @@ export default class App extends React.Component {
     return (
 
       <Provider store={createStore(DeckReducer)}>
-        <DeckList />
+        <View style={styles.container}>
+          <DeckList />
+        </View>
       </Provider >
 
     );

@@ -6,14 +6,30 @@ import { getDeckList } from './../actions/deckAction'
 
 class DeckList extends Component {
 
+  componentDidMount() {
+
+    const { dispatchGetDeckList } = this.props;
+
+    dispatchGetDeckList();
+  }
+
   render() {
 
-    console.log(this.props);
+    const { deckList } = this.props;
+
     return (
+
       <View>
-        <Text>
-          Hello from DeckList component
-        </Text>
+
+        {
+          deckList && deckList.length && deckList.map((deck) => (
+
+            <Text key={deck.name}>
+              {deck.name}
+            </Text>
+          ))
+        }
+
       </View>
     )
   }
