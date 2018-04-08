@@ -19,7 +19,7 @@ class DeckList extends Component {
 
     return (
 
-      <View>
+      <View style={{ flex: 1 }}>
 
         {
           deckList && deckList.length && deckList.map((deck) => (
