@@ -5,9 +5,11 @@ import { Provider } from 'react-redux'
 import { TabNavigator } from 'react-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
+import { AliceBlue, Azure } from './utils/colors'
 import DeckReducer from './reducers/deckReducer'
 import FlashCardStatusBar from './components/FlashCardStatusBar'
 import DeckList from './components/DeckList'
+import NewDeck from './components/NewDeck'
 
 const Tabs = TabNavigator(
   {
@@ -16,6 +18,17 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: 'DECKS'
       }
+    },
+    NewDeck: {
+      screen: NewDeck,
+      navigationOptions: {
+        tabBarLabel: 'New Deck'
+      }
+    }
+  }, {
+    tabBarOptions: {
+      activeBackgroundColor: AliceBlue,
+      inactiveBackgroundColor: Azure
     }
   }
 )
