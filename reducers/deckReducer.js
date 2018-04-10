@@ -1,19 +1,21 @@
 import { DECK_LIST } from './../actions/deckAction'
 
-function deckReducer(state = { deckList: [] }, action) {
+function deck(state = { deck: [] }, action) {
 
   switch (action.type) {
 
     case DECK_LIST:
       return {
         ...state,
-        deckList: [
+        deck: [
           { name: 'ReactJs' },
           { name: 'Angular 5.x' },
           { name: 'AngularJs 1.x' },
         ]
       }
+
+    default: return state
   }
 }
 
-export default deckReducer;
+export default deck;

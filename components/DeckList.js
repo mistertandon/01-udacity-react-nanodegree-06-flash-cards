@@ -15,19 +15,19 @@ class DeckList extends Component {
 
   render() {
 
-    const { deckList } = this.props;
-
+    // const { deckList } = this.props;
+    console.log(this.props);
     return (
 
       <View style={{ flex: 1 }}>
-
+        <Text>Hello from deck list</Text>
         {
-          deckList && deckList.length && deckList.map((deck) => (
+          // deckList && deckList.length && deckList.map((deck) => (
 
-            <Text key={deck.name}>
-              {deck.name}
-            </Text>
-          ))
+          //   <Text key={deck.name}>
+          //     {deck.name}
+          //   </Text>
+          // ))
         }
 
       </View>
