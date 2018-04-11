@@ -26,4 +26,3 @@ export const deckAdd = (deck) => {
       console.log(result);
     })
 }
-

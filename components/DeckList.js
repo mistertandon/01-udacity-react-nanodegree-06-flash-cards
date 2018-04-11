@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
 import { getDeckList } from './../actions/deckAction'
+import Deck from './Deck'
 
 class DeckList extends Component {
 
@@ -13,31 +14,52 @@ class DeckList extends Component {
     dispatchGetDeckList();
   }
 
+  deckList = () => {
+
+    const { deck } = this.props.deck;
+
+    if (deck && deck.length) {
+
+      return deck.map(deckInfo => (
+
+        <View key={`deck_container_${deckInfo.name}`}>
+          <Text key={`deck_name_${deckInfo.name}`}>
+            {deckInfo.name}
+          </Text>
+        </View>
+
+      ))
+    } else {
+
+      return (
+
+        <View key={`deck_container`}>
+          <Text key={`deck_name`}>
+            No deck Exist
+          </Text>
+        </View>
+
+      )
+    }
+  }
+
   render() {
 
-    // const { deckList } = this.props;
-    console.log(this.props);
+
+
     return (
 
       <View style={{ flex: 1 }}>
-        <Text>Hello from deck list</Text>
-        {
-          // deckList && deckList.length && deckList.map((deck) => (
 
-          //   <Text key={deck.name}>
-          //     {deck.name}
-          //   </Text>
-          // ))
-        }
+        {this.deckList()}
 
       </View>
+
     )
   }
 }
 
 const mapStateToProps = (state) => {
-
-  console.log(state);
 
   return {
     ...state
