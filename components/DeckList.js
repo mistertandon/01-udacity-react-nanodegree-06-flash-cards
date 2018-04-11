@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
+import { AliceBlue, MediumSlateBlue } from '../utils/colors'
 import { getDeckList } from './../actions/deckAction'
-import Deck from './Deck'
 
 class DeckList extends Component {
 
@@ -22,11 +22,16 @@ class DeckList extends Component {
 
       return deck.map(deckInfo => (
 
-        <View key={`deck_container_${deckInfo.name}`}>
-          <Text key={`deck_name_${deckInfo.name}`}>
+        <TouchableOpacity key={`deck_container_${deckInfo.name}`}
+          onPress={() => {
+            console.log('TouchableOpacity');
+            this.props.navigation.navigate('Deck')
+          }}
+          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
+          <Text>
             {deckInfo.name}
           </Text>
-        </View>
+        </TouchableOpacity>
 
       ))
     } else {

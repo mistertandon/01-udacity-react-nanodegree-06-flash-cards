@@ -3,12 +3,13 @@ import { Text, View, StyleSheet } from 'react-native';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
 import { AliceBlue, Azure } from './utils/colors'
 import deck from './reducers/deckReducer'
 import FlashCardStatusBar from './components/FlashCardStatusBar'
+import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
 
@@ -30,6 +31,17 @@ const Tabs = TabNavigator(
     tabBarOptions: {
       activeBackgroundColor: AliceBlue,
       inactiveBackgroundColor: Azure
+    }
+  }
+)
+
+const MainNavigator = StackNavigator(
+  {
+    Decks: {
+      screen: Tabs
+    },
+    Deck: {
+      screen: Deck
     }
   }
 )
@@ -56,7 +68,7 @@ export default class App extends React.Component {
       <Provider store={storeRef}>
         <View style={styles.container}>
           <FlashCardStatusBar backgroundColor={'#f8defe'} barStyle="lite-content" />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider >
 
@@ -66,7 +78,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'space-around'
+    flex: 1
   },
 });

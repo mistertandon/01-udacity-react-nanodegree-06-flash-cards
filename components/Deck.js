@@ -8,7 +8,7 @@ class Deck extends Component {
     return (
       <View>
         <Text>
-          Yup
+          Hello form Deck.js component
         </Text>
       </View>
     )

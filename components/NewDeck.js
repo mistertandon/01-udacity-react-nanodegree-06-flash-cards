@@ -36,8 +36,6 @@ class NewDeck extends Component {
 
       <View style={{ flex: 1 }}>
 
-        <Text>Hello from NewDeck </Text>
-
         <KeyboardAvoidingView behaviour='padding' style={{ marginLeft: 20, marginRight: 20 }}>
 
           <Form ref={formData => this._form = formData}
