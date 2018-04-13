@@ -1,8 +1,7 @@
-import { _deckAdd } from './../utils/api'
+import { _saveDeckTitle } from './../utils/api'
 
 export const DECK_LIST = 'DECK_LIST'
-export const DECK_ADD = 'DECK_ADD'
-
+export const FLASH_CARDS = 'FLASH_CARDS'
 
 export const getDeckList = () => {
 
@@ -11,18 +10,19 @@ export const getDeckList = () => {
   }
 }
 
-export const deckAddAction = (deck) => {
+/**
+ * @param {Object} fc
+ */
+export const flashCardsAction = (fc) => {
 
   return {
-    type: DECK_ADD,
-    deck
+    type: FLASH_CARDS,
+    fc
   }
 }
 
-export const deckAdd = (deck) => {
+export const saveDeckTitle = (deckTitle) => {
 
-  return _deckAdd()
-    .then(result => {
-      console.log(result);
-    })
+  return dispatch => _saveDeckTitle(deckTitle)
+    .then(flashCardsData => dispatch(flashCardsAction(flashCardsData)))
 }

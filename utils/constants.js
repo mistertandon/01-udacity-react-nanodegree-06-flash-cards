@@ -1,1 +1,1 @@
-export const FLASH_CARDS_KEY = 'FLASH_CARDS_KEY'
+export const FLASH_CARDS_KEY = 'FLASHCARDS:KEY'

@@ -1,17 +1,12 @@
-import { DECK_LIST } from './../actions/deckAction'
+import { FLASH_CARDS } from './../actions/deckAction'
 
 function deck(state = { deck: [] }, action) {
 
   switch (action.type) {
 
-    case DECK_LIST:
+    case FLASH_CARDS:
       return {
-        ...state,
-        deck: [
-          { name: 'ReactJs' },
-          { name: 'Angular 5.x' },
-          { name: 'AngularJs 1.x' },
-        ]
+        fc: action.fc
       }
 
     default: return state

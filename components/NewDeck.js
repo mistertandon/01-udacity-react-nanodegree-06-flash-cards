@@ -4,6 +4,7 @@ import { View, Text, Button, StyleSheet, KeyboardAvoidingView } from 'react-nati
 import t from 'tcomb-form-native'
 
 import { MediumSlateBlue } from './../utils/colors'
+import { saveDeckTitle } from './../actions/deckAction'
 
 const Form = t.form.Form;
 
@@ -27,7 +28,12 @@ class NewDeck extends Component {
   handleFormSubmit = () => {
 
     const formData = this._form.getValue();
-    console.log(formData);
+
+    if (formData !== null) {
+
+      this.props.dispatchSaveDeckTitle(formData.name);
+
+    }
   }
 
   render() {
@@ -48,9 +54,7 @@ class NewDeck extends Component {
             color={MediumSlateBlue}
             disabled={false}
             testID={'new_deck_submit'}
-          >
-            Add
-          </Button>
+          />
 
         </KeyboardAvoidingView>
       </View>
@@ -59,4 +63,20 @@ class NewDeck extends Component {
   }
 }
 
-export default connect()(NewDeck);
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    ...state
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+    dispatchSaveDeckTitle: (deckTitle) => {
+      dispatch(saveDeckTitle(deckTitle))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewDeck);
