@@ -1,14 +1,7 @@
-import { _saveDeckTitle } from './../utils/api'
+import { _getDecksList, _saveDeckTitle } from './../utils/api'
 
 export const DECK_LIST = 'DECK_LIST'
 export const FLASH_CARDS = 'FLASH_CARDS'
-
-export const getDeckList = () => {
-
-  return {
-    type: DECK_LIST
-  }
-}
 
 /**
  * @param {Object} fc
@@ -19,6 +12,15 @@ export const flashCardsAction = (fc) => {
     type: FLASH_CARDS,
     fc
   }
+}
+
+export const getDeckList = () => {
+  console.log('getDeckList called');
+  return dispatch => _getDecksList()
+    .then(flashCardsData => {
+      console.log(flashCardsData);
+return dispatch(flashCardsAction(flashCardsData))
+    })
 }
 
 export const saveDeckTitle = (deckTitle) => {

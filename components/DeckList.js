@@ -3,33 +3,33 @@ import { View, Text, Button, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { AliceBlue, MediumSlateBlue } from '../utils/colors'
-import { getDeckList } from './../actions/deckAction'
+import { getDeckList } from './../actions/fcAction'
 
 class DeckList extends Component {
 
   componentDidMount() {
 
     const { dispatchGetDeckList } = this.props;
-
+    console.log('dispatchGetDeckList');
     dispatchGetDeckList();
   }
 
   deckList = () => {
 
-    const { deck } = this.props.deck;
+    const { fc } = this.props;
 
-    if (deck && deck.length) {
+    if (fc && fc.length) {
 
-      return deck.map(deckInfo => (
+      return fc.map(deckInfo => (
 
-        <TouchableOpacity key={`deck_container_${deckInfo.name}`}
+        <TouchableOpacity key={`deck_container_${deckInfo}`}
           onPress={() => {
             console.log('TouchableOpacity');
             this.props.navigation.navigate('Deck')
           }}
           style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
           <Text>
-            {deckInfo.name}
+            {deckInfo}
           </Text>
         </TouchableOpacity>
 
@@ -61,9 +61,21 @@ class DeckList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    ...state
+
+  const { fc } = state.fc;
+
+  if ((fc === null) || (fc && Array.isArray(fc) && fc.length === 0)) {
+
+    return {
+      fc: []
+    }
+  }
+
+  if (fc && Object.keys(JSON.parse(fc)).length !== 0) {
+
+    return {
+      fc: Object.keys(JSON.parse(fc))
+    }
   }
 }
 

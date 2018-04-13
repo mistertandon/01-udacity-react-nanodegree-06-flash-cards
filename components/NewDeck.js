@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet, KeyboardAvoidingView } from 'react-nati
 import t from 'tcomb-form-native'
 
 import { MediumSlateBlue } from './../utils/colors'
-import { saveDeckTitle } from './../actions/deckAction'
+import { saveDeckTitle } from './../actions/fcAction'
 
 const Form = t.form.Form;
 

@@ -7,7 +7,8 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
 import { AliceBlue, Azure } from './utils/colors'
-import deck from './reducers/deckReducer'
+
+import fc from './reducers/fcReducer'
 import FlashCardStatusBar from './components/FlashCardStatusBar'
 import Deck from './components/Deck'
 import DeckList from './components/DeckList'
@@ -48,7 +49,7 @@ const MainNavigator = StackNavigator(
 
 const appReducers = combineReducers(
   {
-    deck
+    fc
   }
 )
 

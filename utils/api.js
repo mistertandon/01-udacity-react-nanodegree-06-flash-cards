@@ -7,21 +7,11 @@ export const _saveDeckTitle = (deckTitle) => {
 
   return AsyncStorage
     .mergeItem(FLASH_CARDS_KEY, JSON.stringify({ [deckTitle]: [] }))
-    .then(
-      (result) => {
-
-        return AsyncStorage
-          .getItem(FLASH_CARDS_KEY)
-      }
-    );
+    .then(() => _getDecksList());
 }
 
-export const _getDeck = (deck) => {
+export const _getDecksList = () => {
 
   return AsyncStorage
-    .getItem(FLASH_CARDS_KEY)
-    .then(result => {
-      console.log(result);
-      console.log(result[deck]);
-    });
+    .getItem(FLASH_CARDS_KEY);
 }
