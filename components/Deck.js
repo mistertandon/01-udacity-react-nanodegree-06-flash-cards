@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { LightBlue, Red, Lime } from './../utils/colors'
-
+import Card from './Card'
 
 class Deck extends Component {
 
@@ -56,9 +56,15 @@ class Deck extends Component {
 
   renderStartQuizButton = () => {
 
+    console.log(this.props);
     return (
 
-      <TouchableOpacity style={{ marginTop: 40, backgroundColor: Lime }}>
+      <TouchableOpacity style={{ marginTop: 40, backgroundColor: Lime }}
+        onPress={() => {
+
+          this.props.navigation.navigate('Card', { index: 0 })
+        }}
+      >
         <Text>{this._startQuizLabel}</Text>
       </TouchableOpacity>
 

@@ -14,6 +14,7 @@ import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
 import AddCard from './components/AddCard'
+import Card from './components/Card'
 
 const Tabs = TabNavigator(
   {
@@ -29,7 +30,8 @@ const Tabs = TabNavigator(
         tabBarLabel: 'New Deck'
       }
     }
-  }, {
+  },
+  {
     tabBarOptions: {
       activeBackgroundColor: AliceBlue,
       inactiveBackgroundColor: Azure
@@ -47,6 +49,9 @@ const MainNavigator = StackNavigator(
     },
     AddCard: {
       screen: AddCard
+    },
+    Card: {
+      screen: Card
     }
   }
 )
