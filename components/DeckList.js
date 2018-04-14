@@ -10,8 +10,13 @@ class DeckList extends Component {
   componentDidMount() {
 
     const { dispatchGetDeckList } = this.props;
-    console.log('dispatchGetDeckList');
+
     dispatchGetDeckList();
+  }
+
+  navigateToDeck = (deck) => {
+
+    this.props.navigation.navigate('Deck', { deck })
   }
 
   deckList = () => {
@@ -25,7 +30,7 @@ class DeckList extends Component {
         <TouchableOpacity key={`deck_container_${deckTitle}`}
           onPress={() => {
 
-            this.props.navigation.navigate('Deck', { deck: deckTitle })
+            this.navigateToDeck(deckTitle)
           }}
           style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
           <Text>

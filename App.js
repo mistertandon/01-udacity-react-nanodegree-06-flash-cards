@@ -13,6 +13,7 @@ import FlashCardStatusBar from './components/FlashCardStatusBar'
 import Deck from './components/Deck'
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
+import AddCard from './components/AddCard'
 
 const Tabs = TabNavigator(
   {
@@ -43,6 +44,9 @@ const MainNavigator = StackNavigator(
     },
     Deck: {
       screen: Deck
+    },
+    AddCard: {
+      screen: AddCard
     }
   }
 )

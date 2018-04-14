@@ -51,7 +51,6 @@ class NewDeck extends Component {
           <Button color={MediumSlateBlue}
             title='Add New Deck'
             onPress={this.handleFormSubmit}
-            color={MediumSlateBlue}
             disabled={false}
             testID={'new_deck_submit'}
           />
@@ -64,7 +63,7 @@ class NewDeck extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+
   return {
     ...state
   }

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-import { LightBlue, LightSkyBlue } from './../utils/colors'
+import { LightBlue, Red, Lime } from './../utils/colors'
+
 
 class Deck extends Component {
 
@@ -31,21 +32,36 @@ class Deck extends Component {
     )
   }
 
+  navigateToAddCardScreen = () => {
+
+    const { deck } = this.props.navigation.state.params;
+
+    this.props.navigation.navigate('AddCard', { deck })
+  }
+
   renderAddCardButton = () => {
 
     return (
-      <TouchableOpacity>
+
+      <TouchableOpacity style={{ marginTop: 40, backgroundColor: Red }}
+        onPress={() => {
+
+          this.navigateToAddCardScreen()
+        }}>
         <Text>{this._addCardLabel}</Text>
       </TouchableOpacity>
+
     )
   }
 
   renderStartQuizButton = () => {
 
     return (
-      <TouchableOpacity>
+
+      <TouchableOpacity style={{ marginTop: 40, backgroundColor: Lime }}>
         <Text>{this._startQuizLabel}</Text>
       </TouchableOpacity>
+
     )
   }
 
@@ -53,11 +69,14 @@ class Deck extends Component {
 
     return (
       <View style={{ flex: 1, alignItems: 'center', margin: 5, justifyContent: 'space-around' }}>
+
         {this.renderDeckTitle()}
-        <View style={{ backgroundColor: LightSkyBlue }}>
+
+        <View>
           {this.renderAddCardButton()}
           {this.renderStartQuizButton()}
         </View>
+
       </View >
     )
   }
@@ -65,13 +84,15 @@ class Deck extends Component {
 
 const mapStateToProps = (state, ownProps) => {
 
+  console.log(state);
+
   const { deck } = ownProps.navigation.state.params;
   const { fc } = state.fc;
 
   if (fc && JSON.parse(fc).hasOwnProperty(deck)) {
 
     return {
-      cards: JSON.parse(fc)[deck]
+      cards: JSON.parse(fc)[deck].questions
     }
   }
 
