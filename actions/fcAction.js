@@ -15,12 +15,10 @@ export const flashCardsAction = (fc) => {
 }
 
 export const getDeckList = () => {
-  console.log('getDeckList called');
+
   return dispatch => _getDecksList()
-    .then(flashCardsData => {
-      console.log(flashCardsData);
-return dispatch(flashCardsAction(flashCardsData))
-    })
+    .then(flashCardsData => dispatch(flashCardsAction(flashCardsData))
+    )
 }
 
 export const saveDeckTitle = (deckTitle) => {

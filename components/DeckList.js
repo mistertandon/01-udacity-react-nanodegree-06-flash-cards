@@ -20,16 +20,16 @@ class DeckList extends Component {
 
     if (fc && fc.length) {
 
-      return fc.map(deckInfo => (
+      return fc.map(deckTitle => (
 
-        <TouchableOpacity key={`deck_container_${deckInfo}`}
+        <TouchableOpacity key={`deck_container_${deckTitle}`}
           onPress={() => {
-            console.log('TouchableOpacity');
-            this.props.navigation.navigate('Deck')
+
+            this.props.navigation.navigate('Deck', { deck: deckTitle })
           }}
           style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
           <Text>
-            {deckInfo}
+            {deckTitle}
           </Text>
         </TouchableOpacity>
 
