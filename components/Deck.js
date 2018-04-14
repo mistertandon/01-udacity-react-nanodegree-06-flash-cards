@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
+import { LightBlue, LightSkyBlue } from './../utils/colors'
+
 class Deck extends Component {
 
   _addCardLabel = 'Add Card';
+
+  _startQuizLabel = 'Start Quiz';
 
   componentDidMount() {
 
@@ -13,11 +17,15 @@ class Deck extends Component {
   renderDeckTitle = () => {
 
     const { deck } = this.props.navigation.state.params;
+    const { cards } = this.props;
 
     return (
-      <View>
+      <View style={{ backgroundColor: LightBlue }}>
         <Text>
           {deck}
+        </Text>
+        <Text>
+          {cards.length} Cards
         </Text>
       </View>
     )
@@ -32,13 +40,25 @@ class Deck extends Component {
     )
   }
 
+  renderStartQuizButton = () => {
+
+    return (
+      <TouchableOpacity>
+        <Text>{this._startQuizLabel}</Text>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
 
     return (
-      <View style={{ alignItems: 'center', margin: 5 }}>
+      <View style={{ flex: 1, alignItems: 'center', margin: 5, justifyContent: 'space-around' }}>
         {this.renderDeckTitle()}
-        {this.renderAddCardButton()}
-      </View>
+        <View style={{ backgroundColor: LightSkyBlue }}>
+          {this.renderAddCardButton()}
+          {this.renderStartQuizButton()}
+        </View>
+      </View >
     )
   }
 }
