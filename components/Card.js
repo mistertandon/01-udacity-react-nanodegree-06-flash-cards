@@ -26,25 +26,17 @@ const QuizCompleteScreen = () => {
   )
 }
 
-const QuestionScreen = () => {
+const DisplayEitherQuestionOrAnswerScreen = ({ question, answer, questionText, answerText }) => {
 
   return (
+
     <View>
       <Text>
-        QuestionScreen
+        {question && (questionText)}
+        {answer && (answerText)}
       </Text>
     </View>
-  )
-}
 
-const AnswerScreen = () => {
-
-  return (
-    <View>
-      <Text>
-        AnswerScreen
-      </Text>
-    </View>
   )
 }
 
@@ -173,7 +165,8 @@ class Card extends Component {
     const { questionIndex, isQuestionScreen, isAnswerScreen, correctQuestions, inCorrectQuestions, totalQuestions } = this.state;
     const { deck } = this.props.navigation.state.params;
     const { cards } = this.props;
-
+    console.log(questionIndex);
+    console.log(cards);
     if (cards && cards.length === 0) {
 
       return (
@@ -181,19 +174,19 @@ class Card extends Component {
       )
     }
 
-    if (questionIndex && (questionIndex > cards.length - 1)) {
+    if (questionIndex !== null && (questionIndex > cards.length - 1)) {
 
       return (
         <QuizCompleteScreen />
       )
     }
 
-    if (isQuestionScreen) {
+    if (questionIndex !== null && isQuestionScreen) {
 
       return (
 
         <View>
-          <QuestionScreen />
+          <DisplayEitherQuestionOrAnswerScreen question={true} answer={false} questionText={cards[questionIndex]['question']} answerText={''} />
           <FlipToAnswerScreen />
           <CorrectOption />
           <InCorrectOption />
@@ -202,12 +195,13 @@ class Card extends Component {
       )
     }
 
-    if (isAnswerScreen) {
+    if (questionIndex !== null && isAnswerScreen) {
 
       return (
 
         <View>
-          <AnswerScreen />
+          <DisplayEitherQuestionOrAnswerScreen question={false} answer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
+          {/* <AnswerScreen /> */}
           <FlipToQuestionScreen />
           <CorrectOption />
           <InCorrectOption />
@@ -215,6 +209,8 @@ class Card extends Component {
 
       )
     }
+
+    return null
   }
 }
 
