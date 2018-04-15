@@ -56,13 +56,18 @@ class Deck extends Component {
 
   renderStartQuizButton = () => {
 
-    console.log(this.props);
+    // console.log(this.props);
+    const { deck } = this.props.navigation.state.params;
+
     return (
 
       <TouchableOpacity style={{ marginTop: 40, backgroundColor: Lime }}
         onPress={() => {
 
-          this.props.navigation.navigate('Card', { index: 0 })
+          this.props.navigation.navigate('Card', {
+            index: 0,
+            deck
+          })
         }}
       >
         <Text>{this._startQuizLabel}</Text>
