@@ -65,7 +65,6 @@ class Deck extends Component {
         onPress={() => {
 
           this.props.navigation.navigate('Card', {
-            index: 0,
             deck
           })
         }}
