@@ -7,22 +7,8 @@ import { DisplayEitherQuestionOrAnswerScreen } from './DisplayEitherQuestionOrAn
 import { FlipToEitherQuestionOrAnswerScreen } from './FlipToEitherQuestionOrAnswerScreen'
 import { DeckWithNoCard } from './DeckWithNoCard'
 import { QuizCompleteScreen } from './QuizCompleteScreen'
-import {CorrectOption} from './CorrectOption'
-
-const InCorrectOption = ({ handleClick }) => {
-
-  return (
-
-    <TouchableOpacity style={{ marginTop: 10, backgroundColor: Red }}
-      onPress={handleClick}
-    >
-      <Text>
-        InCorrectOption
-      </Text>
-    </TouchableOpacity>
-
-  )
-}
+import { CorrectOption } from './CorrectOption'
+import { InCorrectOption } from './InCorrectOption'
 
 class Card extends Component {
 
