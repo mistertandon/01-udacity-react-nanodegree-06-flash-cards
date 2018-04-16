@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
+import { setNotification, clearNotificationObject } from './../utils/notification'
 import { AliceBlue, MediumSlateBlue } from '../utils/colors'
 import { getDeckList } from './../actions/fcAction'
 
@@ -11,6 +12,8 @@ class DeckList extends Component {
 
     const { dispatchGetDeckList } = this.props;
 
+    setNotification()
+    // clearNotificationObject()
     dispatchGetDeckList();
   }
 
