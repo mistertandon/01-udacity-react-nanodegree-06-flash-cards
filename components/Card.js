@@ -5,28 +5,8 @@ import { connect } from 'react-redux'
 import { AliceBlue, Red, Lime } from './../utils/colors'
 import { DisplayEitherQuestionOrAnswerScreen } from './DisplayEitherQuestionOrAnswerScreen'
 import { FlipToEitherQuestionOrAnswerScreen } from './FlipToEitherQuestionOrAnswerScreen'
-
-const DeckWithNoCard = () => {
-
-  return (
-    <View>
-      <Text>
-        No Question added to deck yet.
-      </Text>
-    </View>
-  )
-}
-
-const QuizCompleteScreen = () => {
-
-  return (
-    <View>
-      <Text>
-        Congratulations!!! You have been completed quiz.
-      </Text>
-    </View>
-  )
-}
+import { DeckWithNoCard } from './DeckWithNoCard'
+import { QuizCompleteScreen } from './QuizCompleteScreen'
 
 const CorrectOption = () => {
 
