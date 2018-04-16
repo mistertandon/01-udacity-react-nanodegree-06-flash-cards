@@ -7,28 +7,14 @@ import { DisplayEitherQuestionOrAnswerScreen } from './DisplayEitherQuestionOrAn
 import { FlipToEitherQuestionOrAnswerScreen } from './FlipToEitherQuestionOrAnswerScreen'
 import { DeckWithNoCard } from './DeckWithNoCard'
 import { QuizCompleteScreen } from './QuizCompleteScreen'
+import {CorrectOption} from './CorrectOption'
 
-const CorrectOption = () => {
-
-  return (
-
-    <TouchableOpacity style={{ marginTop: 10, backgroundColor: Red }}
-      onPress={() => { }}
-    >
-      <Text>
-        CorrectOption
-      </Text>
-    </TouchableOpacity>
-
-  )
-}
-
-const InCorrectOption = () => {
+const InCorrectOption = ({ handleClick }) => {
 
   return (
 
     <TouchableOpacity style={{ marginTop: 10, backgroundColor: Red }}
-      onPress={() => { }}
+      onPress={handleClick}
     >
       <Text>
         InCorrectOption
@@ -72,48 +58,7 @@ class Card extends Component {
 
   }
 
-  renderQuestion = () => {
-
-    const { cards } = this.props;
-    const { index } = this.props.navigation.state.params;
-
-    return (
-
-      <View style={{ margin: 10, height: 100, backgroundColor: AliceBlue, alignSelf: 'stretch' }}>
-        <Text>
-          {cards[index].question}
-        </Text>
-      </View>
-
-    )
-  }
-
-  renderCorrectOptions = () => {
-
-    const { index, deck } = this.props.navigation.state.params;
-
-    return (
-      <TouchableOpacity style={{ marginTop: 10, backgroundColor: Lime }}
-        onPress={() => {
-
-          this.props.navigation.navigate('Card', {
-            index: index + 1,
-            deck
-          })
-        }}
-      >
-        <Text>
-          {this._correctOptionLabel}
-        </Text>
-      </TouchableOpacity>
-    )
-
-  }
-
   handleScreenFlipRequest = (flipToQuestionScreen, flipToAnswerScreen) => {
-
-    console.log(flipToQuestionScreen);
-    console.log(flipToAnswerScreen);
 
     this.setState(() => (
       {
@@ -123,13 +68,36 @@ class Card extends Component {
     ))
   }
 
+  handleCorrectOptionClick = () => {
+
+    this.setState(state => (
+      {
+        questionIndex: state.questionIndex + 1,
+        isQuestionScreen: true,
+        isAnswerScreen: false,
+        correctQuestions: state.correctQuestions + 1
+      }
+    ))
+  }
+
+  handleIncorrectOptionClick = () => {
+
+    this.setState(state => (
+      {
+        questionIndex: state.questionIndex + 1,
+        isQuestionScreen: true,
+        isAnswerScreen: false,
+        inCorrectQuestions: state.inCorrectQuestions + 1
+      }
+    ))
+  }
+
   render() {
 
     const { questionIndex, isQuestionScreen, isAnswerScreen, correctQuestions, inCorrectQuestions, totalQuestions } = this.state;
     const { deck } = this.props.navigation.state.params;
     const { cards } = this.props;
-    console.log(questionIndex);
-    console.log(cards);
+
     if (cards && cards.length === 0) {
 
       return (
@@ -151,15 +119,15 @@ class Card extends Component {
         <View>
           <DisplayEitherQuestionOrAnswerScreen isQuestion={true} isAnswer={false} questionText={cards[questionIndex]['question']} answerText={''} />
           <FlipToEitherQuestionOrAnswerScreen
-            displayLabel={this._questionLabel}
+            displayLabel={this._answerLabel}
             flipScreen={
               () => {
                 this.handleScreenFlipRequest(false, true)
               }
             }
           />
-          <CorrectOption />
-          <InCorrectOption />
+          <CorrectOption handleClick={this.handleCorrectOptionClick} />
+          <InCorrectOption handleClick={this.handleIncorrectOptionClick} />
         </View>
 
       )
@@ -172,15 +140,15 @@ class Card extends Component {
         <View>
           <DisplayEitherQuestionOrAnswerScreen isQuestion={false} isAnswer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
           <FlipToEitherQuestionOrAnswerScreen
-            displayLabel={this._answerLabel}
+            displayLabel={this._questionLabel}
             flipScreen={
               () => {
                 this.handleScreenFlipRequest(true, false)
               }
             }
           />
-          <CorrectOption />
-          <InCorrectOption />
+          <CorrectOption handleClick={this.handleCorrectOptionClick} />
+          <InCorrectOption handleClick={this.handleIncorrectOptionClick} />
         </View>
 
       )
