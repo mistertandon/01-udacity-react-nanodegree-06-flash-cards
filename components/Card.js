@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { AliceBlue, Red, Lime } from './../utils/colors'
 import { DisplayEitherQuestionOrAnswerScreen } from './DisplayEitherQuestionOrAnswerScreen'
+import { FlipToEitherQuestionOrAnswerScreen } from './FlipToEitherQuestionOrAnswerScreen'
 
 const DeckWithNoCard = () => {
 
@@ -24,19 +25,6 @@ const QuizCompleteScreen = () => {
         Congratulations!!! You have been completed quiz.
       </Text>
     </View>
-  )
-}
-
-const FlipToEitherQuestionOrAnswerScreen = ({ displayLabel, flipScreen }) => {
-
-  return (
-
-    <TouchableOpacity onPress={flipScreen}>
-      <Text>
-        {displayLabel}
-      </Text>
-    </TouchableOpacity>
-
   )
 }
 
