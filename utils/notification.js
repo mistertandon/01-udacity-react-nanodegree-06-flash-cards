@@ -8,11 +8,8 @@ import { DeepSkyBlue } from './../utils/colors'
 
 export const clearNotificationObject = () => {
 
-  AsyncStorage.removeItem(FLASH_CARDS_NOTIFICATION_KEY)
-    .then((data) => {
-      console.log(data);
-      Notifications.cancelAllScheduledNotificationsAsync(data)
-    })
+  return AsyncStorage.removeItem(FLASH_CARDS_NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
 export const getNotificationObject = () => {
@@ -49,13 +46,12 @@ export const setNotification = () => {
                 let todayDate = new Date();
                 todayDate.setDate(todayDate.getDate() + 1);
                 todayDate.setHours(20);
-                todayDate.setMinutes(1)
 
                 Notifications.scheduleLocalNotificationAsync(
                   getNotificationObject(),
                   {
                     time: todayDate,
-                    repeat: 'day'
+                    repeat: 'minute'
                   }
                 );
 

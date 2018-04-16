@@ -13,7 +13,6 @@ class DeckList extends Component {
     const { dispatchGetDeckList } = this.props;
 
     setNotification()
-    // clearNotificationObject()
     dispatchGetDeckList();
   }
 

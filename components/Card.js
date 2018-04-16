@@ -94,7 +94,7 @@ class Card extends Component {
     if (questionIndex !== null && (questionIndex > cards.length - 1)) {
 
       return (
-        <QuizCompleteScreen />
+        <QuizCompleteScreen totalQuestionsProp={totalQuestions} correctQuestionsProp={correctQuestions} />
       )
     }
 

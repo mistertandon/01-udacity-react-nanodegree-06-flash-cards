@@ -1,13 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
-export const QuizCompleteScreen = () => {
+import { setNotification, clearNotificationObject } from './../utils/notification'
 
-  return (
-    <View>
-      <Text>
-        Congratulations!!! You have been completed quiz.
-      </Text>
-    </View>
-  )
+export class QuizCompleteScreen extends Component {
+
+  state = {
+    totalQuestions: null,
+    correctQuestions: null
+  }
+
+  componentDidMount() {
+
+    const { totalQuestionsProp, correctQuestionsProp } = this.props;
+
+    this.setState(() => ({
+      totalQuestions: totalQuestionsProp,
+      correctQuestions: correctQuestionsProp
+    }))
+
+    clearNotificationObject()
+      .then(() => setNotification)
+  }
+
+  render() {
+
+    const { totalQuestions, correctQuestions } = this.state;
+
+    if (totalQuestions !== null && correctQuestions !== null) {
+
+      return (
+
+        <View>
+          <Text>
+            Right Answer {correctQuestions} out of {totalQuestions} questions.
+          </Text>
+        </View>
+
+      )
+    } else {
+
+      return null;
+    }
+  }
 }
