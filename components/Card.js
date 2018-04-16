@@ -94,7 +94,11 @@ class Card extends Component {
     if (questionIndex !== null && (questionIndex > cards.length - 1)) {
 
       return (
-        <QuizCompleteScreen totalQuestionsProp={totalQuestions} correctQuestionsProp={correctQuestions} />
+        <QuizCompleteScreen totalQuestionsProp={totalQuestions}
+          correctQuestionsProp={correctQuestions}
+          deck={deck}
+          navigation={this.props}
+        />
       )
     }
 
@@ -103,7 +107,12 @@ class Card extends Component {
       return (
 
         <View>
-          <DisplayEitherQuestionOrAnswerScreen isQuestion={true} isAnswer={false} questionText={cards[questionIndex]['question']} answerText={''} />
+          <DisplayEitherQuestionOrAnswerScreen
+            isQuestion={true}
+            isAnswer={false}
+            questionText={cards[questionIndex]['question']}
+            answerText={''}
+          />
           <FlipToEitherQuestionOrAnswerScreen
             displayLabel={this._answerLabel}
             flipScreen={

@@ -33,6 +33,7 @@ class NewDeck extends Component {
 
       this.props.dispatchSaveDeckTitle(formData.name);
 
+      this.props.navigation.navigate('Deck', { deck: formData.name })
     }
   }
 

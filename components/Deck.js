@@ -56,7 +56,6 @@ class Deck extends Component {
 
   renderStartQuizButton = () => {
 
-    // console.log(this.props);
     const { deck } = this.props.navigation.state.params;
 
     return (

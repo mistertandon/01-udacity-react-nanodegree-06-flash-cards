@@ -51,7 +51,7 @@ export const setNotification = () => {
                   getNotificationObject(),
                   {
                     time: todayDate,
-                    repeat: 'minute'
+                    repeat: 'day'
                   }
                 );
 
