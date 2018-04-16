@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { AliceBlue, Red, Lime } from './../utils/colors'
+import { DisplayEitherQuestionOrAnswerScreen } from './DisplayEitherQuestionOrAnswerScreen'
 
 const DeckWithNoCard = () => {
 
@@ -26,39 +27,16 @@ const QuizCompleteScreen = () => {
   )
 }
 
-const DisplayEitherQuestionOrAnswerScreen = ({ question, answer, questionText, answerText }) => {
+const FlipToEitherQuestionOrAnswerScreen = ({ displayLabel, flipScreen }) => {
 
   return (
 
-    <View>
+    <TouchableOpacity onPress={flipScreen}>
       <Text>
-        {question && (questionText)}
-        {answer && (answerText)}
+        {displayLabel}
       </Text>
-    </View>
+    </TouchableOpacity>
 
-  )
-}
-
-const FlipToAnswerScreen = () => {
-
-  return (
-    <View>
-      <Text>
-        FlipToAnswerScreen
-      </Text>
-    </View>
-  )
-}
-
-const FlipToQuestionScreen = () => {
-
-  return (
-    <View>
-      <Text>
-        FlipToQuestionScreen
-      </Text>
-    </View>
   )
 }
 
@@ -97,6 +75,10 @@ class Card extends Component {
   _correctOptionLabel = 'Correct';
 
   _incorrectOptionLabel = 'Incorrect';
+
+  _questionLabel = 'Question';
+
+  _answerLabel = 'Answer';
 
   state = {
     questionIndex: null,
@@ -160,6 +142,19 @@ class Card extends Component {
 
   }
 
+  handleScreenFlipRequest = (flipToQuestionScreen, flipToAnswerScreen) => {
+
+    console.log(flipToQuestionScreen);
+    console.log(flipToAnswerScreen);
+
+    this.setState(() => (
+      {
+        isQuestionScreen: flipToQuestionScreen,
+        isAnswerScreen: flipToAnswerScreen,
+      }
+    ))
+  }
+
   render() {
 
     const { questionIndex, isQuestionScreen, isAnswerScreen, correctQuestions, inCorrectQuestions, totalQuestions } = this.state;
@@ -186,8 +181,15 @@ class Card extends Component {
       return (
 
         <View>
-          <DisplayEitherQuestionOrAnswerScreen question={true} answer={false} questionText={cards[questionIndex]['question']} answerText={''} />
-          <FlipToAnswerScreen />
+          <DisplayEitherQuestionOrAnswerScreen isQuestion={true} isAnswer={false} questionText={cards[questionIndex]['question']} answerText={''} />
+          <FlipToEitherQuestionOrAnswerScreen
+            displayLabel={this._questionLabel}
+            flipScreen={
+              () => {
+                this.handleScreenFlipRequest(false, true)
+              }
+            }
+          />
           <CorrectOption />
           <InCorrectOption />
         </View>
@@ -200,9 +202,15 @@ class Card extends Component {
       return (
 
         <View>
-          <DisplayEitherQuestionOrAnswerScreen question={false} answer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
-          {/* <AnswerScreen /> */}
-          <FlipToQuestionScreen />
+          <DisplayEitherQuestionOrAnswerScreen isQuestion={false} isAnswer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
+          <FlipToEitherQuestionOrAnswerScreen
+            displayLabel={this._answerLabel}
+            flipScreen={
+              () => {
+                this.handleScreenFlipRequest(true, false)
+              }
+            }
+          />
           <CorrectOption />
           <InCorrectOption />
         </View>
