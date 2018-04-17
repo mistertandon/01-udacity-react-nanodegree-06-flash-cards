@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { setNotification, clearNotificationObject } from './../utils/notification'
 import { capitalizedFirstLetter } from './../utils/helpers'
-import { AliceBlue, MediumSlateBlue, LightSkyBlue } from '../utils/colors'
+import { White, DodgerBlue } from '../utils/colors'
 import { getDeckList } from './../actions/fcAction'
 
 
@@ -34,16 +34,16 @@ class DeckList extends Component {
       return fc.map(deckTitle => (
 
         <TouchableOpacity key={`deck_container_${deckTitle}`}
-          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: LightSkyBlue, marginTop: 5, marginLeft: 10, marginRight: 10, borderRadius: 15 }}
+          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: DodgerBlue, marginTop: 5, marginLeft: 10, marginRight: 10, borderRadius: 15 }}
           onPress={() => {
 
             this.navigateToDeck(deckTitle)
           }}
         >
-          <Text style={{ fontSize: 18 }}>
+          <Text style={{ fontSize: 18, color: White }}>
             {capitalizedFirstLetter(deckTitle)}
           </Text>
-          <Text style={{ marginTop: 5, fontSize: 15, fontStyle: 'italic' }}>
+          <Text style={{ marginTop: 5, fontSize: 15, fontStyle: 'italic', color: White }}>
             {jsonParsedFc[deckTitle]['questions'].length} Cards
           </Text>
         </TouchableOpacity>
@@ -54,10 +54,10 @@ class DeckList extends Component {
       return (
 
         <View key={`deck_container`}
-          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: LightSkyBlue, marginTop: 5, marginLeft: 10, marginRight: 10, borderRadius: 15 }}
+          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: DodgerBlue, marginTop: 5, marginLeft: 10, marginRight: 10, borderRadius: 15 }}
         >
           <Text key={`deck_name`}
-            style={{ fontSize: 18 }}
+            style={{ fontSize: 18, color: White }}
           >
             {this._emptyDeckListMessage}
           </Text>

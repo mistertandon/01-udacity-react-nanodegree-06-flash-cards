@@ -107,24 +107,28 @@ class Card extends Component {
 
       return (
 
-        <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10 }}>
-          <QuizProgress questionIndexProp={questionIndex + 1} totalQuestionsProp={totalQuestions} />
-          <DisplayEitherQuestionOrAnswerScreen
-            isQuestion={true}
-            isAnswer={false}
-            questionText={cards[questionIndex]['question']}
-            answerText={''}
-          />
-          <FlipToEitherQuestionOrAnswerScreen
-            displayLabel={this._answerLabel}
-            flipScreen={
-              () => {
-                this.handleScreenFlipRequest(false, true)
+        <View style={{ flex: 1, marginTop: 10, marginLeft: 10, marginRight: 10, justifyContent: 'space-between', paddingBottom: 100 }}>
+          <View>
+            <QuizProgress questionIndexProp={questionIndex + 1} totalQuestionsProp={totalQuestions} />
+            <DisplayEitherQuestionOrAnswerScreen
+              isQuestion={true}
+              isAnswer={false}
+              questionText={cards[questionIndex]['question']}
+              answerText={''}
+            />
+            <FlipToEitherQuestionOrAnswerScreen
+              displayLabel={this._answerLabel}
+              flipScreen={
+                () => {
+                  this.handleScreenFlipRequest(false, true)
+                }
               }
-            }
-          />
-          <CorrectOption handleClick={this.handleCorrectOptionClick} />
-          <InCorrectOption handleClick={this.handleIncorrectOptionClick} />
+            />
+          </View>
+          <View>
+            <CorrectOption handleClick={this.handleCorrectOptionClick} />
+            <InCorrectOption handleClick={this.handleIncorrectOptionClick} />
+          </View>
         </View>
 
       )
@@ -134,19 +138,23 @@ class Card extends Component {
 
       return (
 
-        <View>
-          <QuizProgress questionIndexProp={questionIndex + 1} totalQuestionsProp={totalQuestions} />
-          <DisplayEitherQuestionOrAnswerScreen isQuestion={false} isAnswer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
-          <FlipToEitherQuestionOrAnswerScreen
-            displayLabel={this._questionLabel}
-            flipScreen={
-              () => {
-                this.handleScreenFlipRequest(true, false)
+        <View style={{ flex: 1, marginTop: 10, marginLeft: 10, marginRight: 10, justifyContent: 'space-between', paddingBottom: 100 }}>
+          <View>
+            <QuizProgress questionIndexProp={questionIndex + 1} totalQuestionsProp={totalQuestions} />
+            <DisplayEitherQuestionOrAnswerScreen isQuestion={false} isAnswer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
+            <FlipToEitherQuestionOrAnswerScreen
+              displayLabel={this._questionLabel}
+              flipScreen={
+                () => {
+                  this.handleScreenFlipRequest(true, false)
+                }
               }
-            }
-          />
-          <CorrectOption handleClick={this.handleCorrectOptionClick} />
-          <InCorrectOption handleClick={this.handleIncorrectOptionClick} />
+            />
+          </View>
+          <View>
+            <CorrectOption handleClick={this.handleCorrectOptionClick} />
+            <InCorrectOption handleClick={this.handleIncorrectOptionClick} />
+          </View>
         </View>
 
       )
