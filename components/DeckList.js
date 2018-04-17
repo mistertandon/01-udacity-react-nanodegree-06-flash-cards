@@ -23,7 +23,7 @@ class DeckList extends Component {
 
   deckList = () => {
 
-    const { fc } = this.props;
+    const { fc, jsonParsedFc } = this.props;
 
     if (fc && fc.length) {
 
@@ -37,6 +37,9 @@ class DeckList extends Component {
           style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
           <Text>
             {deckTitle}
+          </Text>
+          <Text>
+            {jsonParsedFc[deckTitle]['questions'].length} Cards
           </Text>
         </TouchableOpacity>
 
@@ -70,18 +73,20 @@ class DeckList extends Component {
 const mapStateToProps = (state) => {
 
   const { fc } = state.fc;
-
+  console.log(fc);
   if ((fc === null) || (fc && Array.isArray(fc) && fc.length === 0)) {
 
     return {
-      fc: []
+      fc: [],
+      jsonParsedFc: []
     }
   }
 
   if (fc && Object.keys(JSON.parse(fc)).length !== 0) {
 
     return {
-      fc: Object.keys(JSON.parse(fc))
+      fc: Object.keys(JSON.parse(fc)),
+      jsonParsedFc: JSON.parse(fc)
     }
   }
 }
