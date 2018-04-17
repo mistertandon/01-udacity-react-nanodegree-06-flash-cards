@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { LightBlue, Red, Lime } from './../utils/colors'
 import Card from './Card'
+import { HeaderLeftRoute } from './HeaderLeftRoute'
 
 class Deck extends Component {
 
@@ -16,12 +17,14 @@ class Deck extends Component {
     const { deck } = navigation.state.params;
 
     return {
-      title: `${deck}`
+
+      title: `${deck}`,
+      headerLeft: <HeaderLeftRoute navigateToRoute={
+        () => {
+          navigation.navigate('Decks')
+        }
+      } />
     }
-  }
-
-  componentDidMount() {
-
   }
 
   renderDeckTitle = () => {
@@ -86,6 +89,7 @@ class Deck extends Component {
   render() {
 
     return (
+
       <View style={{ flex: 1, alignItems: 'center', margin: 5, justifyContent: 'space-around' }}>
 
         {this.renderDeckTitle()}
