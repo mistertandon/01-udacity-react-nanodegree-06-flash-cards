@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, Text, Button, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import t from 'tcomb-form-native'
 
-import { MediumSlateBlue } from './../utils/colors'
+import { DodgerBlue } from './../utils/colors'
 import { saveDeckTitle } from './../actions/fcAction'
 
 const Form = t.form.Form;
@@ -41,7 +41,7 @@ class NewDeck extends Component {
 
     return (
 
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, marginTop: 20 }}>
 
         <KeyboardAvoidingView behaviour='padding' style={{ marginLeft: 20, marginRight: 20 }}>
 
@@ -49,7 +49,7 @@ class NewDeck extends Component {
             options={DeckOptions}
             type={DeckModel} />
 
-          <Button color={MediumSlateBlue}
+          <Button color={DodgerBlue}
             title='Add New Deck'
             onPress={this.handleFormSubmit}
             disabled={false}
