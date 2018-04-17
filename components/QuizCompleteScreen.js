@@ -49,6 +49,9 @@ export class QuizCompleteScreen extends Component {
 
   renderQuizRestartOption = () => {
 
+    const { navigation } = this.props.navigation;
+    const { deck } = this.props;
+
     return (
 
       <TouchableOpacity onPress={
