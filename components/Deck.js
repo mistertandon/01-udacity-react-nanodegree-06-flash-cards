@@ -11,6 +11,15 @@ class Deck extends Component {
 
   _startQuizLabel = 'Start Quiz';
 
+  static navigationOptions = ({ navigation }) => {
+
+    const { deck } = navigation.state.params;
+
+    return {
+      title: `${deck}`
+    }
+  }
+
   componentDidMount() {
 
   }
