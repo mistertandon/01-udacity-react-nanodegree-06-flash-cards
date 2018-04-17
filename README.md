@@ -12,4 +12,4 @@
 
 #####Does the app function correctly in either Android or iOS
 
-1. The app works correctly in either Android device (or emulator).
+1. The app works correctly in Android device (or emulator).
