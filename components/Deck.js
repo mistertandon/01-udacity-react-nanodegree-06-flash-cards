@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { capitalizedFirstLetter } from './../utils/helpers'
-import { Red, DodgerBlue, White } from './../utils/colors'
+import { DodgerBlue, White, LightRed } from './../utils/colors'
 import Card from './Card'
 import { HeaderLeftRoute } from './HeaderLeftRoute'
 
@@ -34,11 +34,11 @@ class Deck extends Component {
     const { cards } = this.props;
 
     return (
-      <View style={{ backgroundColor: Red, height: 80, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginLeft: 20, marginRight: 20 }}>
-        <Text style={{ color: White, fontWeight: 'bold', fontSize: 20 }}>
+      <View style={{ backgroundColor: LightRed, height: 80, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginLeft: 20, marginRight: 20 }}>
+        <Text style={{ color: White, fontSize: 20 }}>
           {capitalizedFirstLetter(deck)}
         </Text>
-        <Text style={{ color: White, marginTop: 5, fontWeight: 'bold', fontSize: 16, fontStyle: 'italic' }}>
+        <Text style={{ color: White, marginTop: 5, fontSize: 16, fontStyle: 'italic' }}>
           {cards.length} Cards
         </Text>
       </View>
