@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { setNotification, clearNotificationObject } from './../utils/notification'
 import { capitalizedFirstLetter } from './../utils/helpers'
-import { AliceBlue, MediumSlateBlue } from '../utils/colors'
+import { AliceBlue, MediumSlateBlue, LightSkyBlue } from '../utils/colors'
 import { getDeckList } from './../actions/fcAction'
 
 
@@ -32,15 +32,16 @@ class DeckList extends Component {
       return fc.map(deckTitle => (
 
         <TouchableOpacity key={`deck_container_${deckTitle}`}
+          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: LightSkyBlue, marginTop: 5, marginLeft: 10, marginRight: 10, borderRadius: 15 }}
           onPress={() => {
 
             this.navigateToDeck(deckTitle)
           }}
-          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
-          <Text>
+        >
+          <Text style={{ fontSize: 18 }}>
             {capitalizedFirstLetter(deckTitle)}
           </Text>
-          <Text>
+          <Text style={{ marginTop: 5, fontSize: 15, fontStyle: 'italic' }}>
             {jsonParsedFc[deckTitle]['questions'].length} Cards
           </Text>
         </TouchableOpacity>
@@ -64,7 +65,7 @@ class DeckList extends Component {
 
     return (
 
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingTop: 10 }}>
         {this.deckList()}
       </View>
 
