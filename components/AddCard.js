@@ -29,6 +29,8 @@ const CardModelOptions = {
 
 class AddCard extends Component {
 
+  _addQuestionTitle = 'Add Question';
+
   handleQuestionAddRequest = () => {
 
     const { dispatchAddCardToDeck } = this.props;
@@ -51,17 +53,20 @@ class AddCard extends Component {
   render() {
 
     return (
-      <View>
-        <View style={{ margin: 10 }}>
+      <View style={{ marginLeft: 15, marginRight: 15, marginTop: 20 }}>
+
+        <View>
           <Form ref={formData => this._form = formData}
             options={CardModelOptions}
             type={CardModel}
           />
         </View>
-        <View style={{ borderWidth: 1 }}>
+
+        <View>
           <Button
-            title={'Add Question'}
+            title={this._addQuestionTitle}
             onPress={this.handleQuestionAddRequest}
+            style={{ borderRadius: 15 }}
           />
         </View>
       </View>
