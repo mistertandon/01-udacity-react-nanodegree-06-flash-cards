@@ -7,20 +7,22 @@ export class QuizCompleteScreen extends Component {
 
   state = {
     totalQuestions: null,
-    correctQuestions: null
+    correctQuestions: null,
+    backToDeckLabel: 'Back To Deck'
   }
 
   _restartQuizLabel = 'Restart Quiz';
 
-  _backToDeckLabel = 'Back To Deck';
+
 
   componentDidMount() {
 
-    const { totalQuestionsProp, correctQuestionsProp } = this.props;
+    const { totalQuestionsProp, correctQuestionsProp, deck } = this.props;
 
     this.setState(() => ({
       totalQuestions: totalQuestionsProp,
-      correctQuestions: correctQuestionsProp
+      correctQuestions: correctQuestionsProp,
+      backToDeckLabel: `Back To ${deck} Deck`
     }))
 
     clearNotificationObject()
@@ -29,7 +31,7 @@ export class QuizCompleteScreen extends Component {
 
   render() {
 
-    const { totalQuestions, correctQuestions } = this.state;
+    const { totalQuestions, correctQuestions, backToDeckLabel } = this.state;
     const { deck } = this.props;
     const { navigation } = this.props.navigation;
 
@@ -69,7 +71,7 @@ export class QuizCompleteScreen extends Component {
             style={{ margin: 10 }}
           >
             <Text>
-              {this._backToDeckLabel}
+              {backToDeckLabel}
             </Text>
           </TouchableOpacity>
 
