@@ -1,4 +1,4 @@
-## Readable Project ( Udacity React Nanodegree II project )
+## Mobile Flashcards Project ( Udacity React Nanodegree III project )
 
 ####Installation steps
 
