@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
+import { capitalizedFirstLetter } from './../utils/helpers'
 import { LightBlue, Red, Lime } from './../utils/colors'
 import Card from './Card'
 import { HeaderLeftRoute } from './HeaderLeftRoute'
@@ -18,7 +19,7 @@ class Deck extends Component {
 
     return {
 
-      title: `${deck}`,
+      title: capitalizedFirstLetter(deck),
       headerLeft: <HeaderLeftRoute navigateToRoute={
         () => {
           navigation.navigate('Decks')
@@ -35,7 +36,7 @@ class Deck extends Component {
     return (
       <View style={{ backgroundColor: LightBlue }}>
         <Text>
-          {deck}
+          {capitalizedFirstLetter(deck)}
         </Text>
         <Text>
           {cards.length} Cards
@@ -105,8 +106,6 @@ class Deck extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
-  console.log(state);
 
   const { deck } = ownProps.navigation.state.params;
   const { fc } = state.fc;

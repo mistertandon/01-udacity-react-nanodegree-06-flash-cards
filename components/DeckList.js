@@ -75,7 +75,7 @@ class DeckList extends Component {
 const mapStateToProps = (state) => {
 
   const { fc } = state.fc;
-  console.log(fc);
+
   if ((fc === null) || (fc && Array.isArray(fc) && fc.length === 0)) {
 
     return {
