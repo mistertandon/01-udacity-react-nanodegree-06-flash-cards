@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Animated } from 'react-native'
 import { connect } from 'react-redux'
 
 import { capitalizedFirstLetter } from './../utils/helpers'
@@ -28,20 +28,37 @@ class Deck extends Component {
     }
   }
 
+  state = {
+    titleHeight: new Animated.Value(0),
+    AddCardOrStartQuizButtonHeight: new Animated.Value(0)
+
+  }
+
+  componentDidMount() {
+
+    let { titleHeight, AddCardOrStartQuizButtonHeight } = this.state;
+
+    Animated.spring(titleHeight, { toValue: 80, speed: 10 }).start();
+    Animated.spring(AddCardOrStartQuizButtonHeight, { toValue: 80, speed: 10 }).start();
+  }
+
   renderDeckTitle = () => {
 
+    let { titleHeight } = this.state;
     const { deck } = this.props.navigation.state.params;
     const { cards } = this.props;
 
     return (
-      <View style={{ backgroundColor: LightRed, height: 80, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginLeft: 20, marginRight: 20 }}>
+
+      <Animated.View style={{ backgroundColor: LightRed, height: titleHeight, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginLeft: 20, marginRight: 20 }}>
         <Text style={{ color: White, fontSize: 20 }}>
           {capitalizedFirstLetter(deck)}
         </Text>
         <Text style={{ color: White, marginTop: 5, fontSize: 16, fontStyle: 'italic' }}>
           {cards.length} Cards
         </Text>
-      </View>
+      </Animated.View>
+
     )
   }
 
@@ -54,35 +71,42 @@ class Deck extends Component {
 
   renderAddCardButton = () => {
 
+    let { AddCardOrStartQuizButtonHeight } = this.state;
+
     return (
 
-      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: White, height: 60, borderRadius: 15 }}
-        onPress={() => {
+      <Animated.View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: White, height: AddCardOrStartQuizButtonHeight, borderRadius: 15 }}>
+        <TouchableOpacity
+          onPress={() => {
 
-          this.navigateToAddCardScreen()
-        }}>
-        <Text style={{ color: DodgerBlue }}>{this._addCardLabel}</Text>
-      </TouchableOpacity>
+            this.navigateToAddCardScreen()
+          }}>
+          <Text style={{ color: DodgerBlue }}>{this._addCardLabel}</Text>
+        </TouchableOpacity>
+      </Animated.View>
 
     )
   }
 
   renderStartQuizButton = () => {
 
+    let { AddCardOrStartQuizButtonHeight } = this.state;
     const { deck } = this.props.navigation.state.params;
 
     return (
 
-      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: DodgerBlue, height: 60, marginTop: 15, borderRadius: 15 }}
-        onPress={() => {
+      <Animated.View style={{ height: AddCardOrStartQuizButtonHeight, justifyContent: 'center', alignItems: 'center', backgroundColor: DodgerBlue, marginTop: 15, borderRadius: 15 }}>
+        <TouchableOpacity
+          onPress={() => {
 
-          this.props.navigation.navigate('Card', {
-            deck
-          })
-        }}
-      >
-        <Text style={{ color: White }}>{this._startQuizLabel}</Text>
-      </TouchableOpacity>
+            this.props.navigation.navigate('Card', {
+              deck
+            })
+          }}
+        >
+          <Text style={{ color: White }}>{this._startQuizLabel}</Text>
+        </TouchableOpacity>
+      </Animated.View>
 
     )
   }
