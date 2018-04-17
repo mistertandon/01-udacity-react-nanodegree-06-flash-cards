@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { AliceBlue, Red, Lime } from './../utils/colors'
+import { QuizProgress } from './QuizProgress'
 import { DisplayEitherQuestionOrAnswerScreen } from './DisplayEitherQuestionOrAnswerScreen'
 import { FlipToEitherQuestionOrAnswerScreen } from './FlipToEitherQuestionOrAnswerScreen'
 import { DeckWithNoCard } from './DeckWithNoCard'
@@ -107,6 +108,7 @@ class Card extends Component {
       return (
 
         <View>
+          <QuizProgress questionIndexProp={questionIndex+1} totalQuestionsProp={totalQuestions} />
           <DisplayEitherQuestionOrAnswerScreen
             isQuestion={true}
             isAnswer={false}
@@ -133,6 +135,7 @@ class Card extends Component {
       return (
 
         <View>
+          <QuizProgress questionIndexProp={questionIndex+1} totalQuestionsProp={totalQuestions} />
           <DisplayEitherQuestionOrAnswerScreen isQuestion={false} isAnswer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
           <FlipToEitherQuestionOrAnswerScreen
             displayLabel={this._questionLabel}

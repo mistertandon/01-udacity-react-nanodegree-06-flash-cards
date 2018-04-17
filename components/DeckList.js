@@ -3,8 +3,10 @@ import { View, Text, Button, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { setNotification, clearNotificationObject } from './../utils/notification'
+import { capitalizedFirstLetter } from './../utils/helpers'
 import { AliceBlue, MediumSlateBlue } from '../utils/colors'
 import { getDeckList } from './../actions/fcAction'
+
 
 class DeckList extends Component {
 
@@ -36,7 +38,7 @@ class DeckList extends Component {
           }}
           style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: AliceBlue, margin: 5 }}>
           <Text>
-            {deckTitle}
+            {capitalizedFirstLetter(deckTitle)}
           </Text>
           <Text>
             {jsonParsedFc[deckTitle]['questions'].length} Cards
