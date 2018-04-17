@@ -107,8 +107,8 @@ class Card extends Component {
 
       return (
 
-        <View>
-          <QuizProgress questionIndexProp={questionIndex+1} totalQuestionsProp={totalQuestions} />
+        <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10 }}>
+          <QuizProgress questionIndexProp={questionIndex + 1} totalQuestionsProp={totalQuestions} />
           <DisplayEitherQuestionOrAnswerScreen
             isQuestion={true}
             isAnswer={false}
@@ -135,7 +135,7 @@ class Card extends Component {
       return (
 
         <View>
-          <QuizProgress questionIndexProp={questionIndex+1} totalQuestionsProp={totalQuestions} />
+          <QuizProgress questionIndexProp={questionIndex + 1} totalQuestionsProp={totalQuestions} />
           <DisplayEitherQuestionOrAnswerScreen isQuestion={false} isAnswer={true} questionText={''} answerText={cards[questionIndex]['answer']} />
           <FlipToEitherQuestionOrAnswerScreen
             displayLabel={this._questionLabel}

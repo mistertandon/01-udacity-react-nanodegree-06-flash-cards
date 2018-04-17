@@ -1,14 +1,14 @@
 import React from 'react'
 import { TouchableOpacity, Text } from 'react-native'
 
-import { Red } from './../utils/colors'
+import { LightRed } from './../utils/colors'
 
 export const InCorrectOption = ({ handleClick }) => {
 
   return (
 
-    <TouchableOpacity style={{ marginTop: 10, backgroundColor: Red }}
-      onPress={handleClick}
+    <TouchableOpacity onPress={handleClick}
+      style={{ marginTop: 10, backgroundColor: LightRed, height: 40, justifyContent: 'center', alignItems: 'center', borderRadius: 15 }}
     >
       <Text>
         InCorrectOption
