@@ -10,6 +10,8 @@ import { getDeckList } from './../actions/fcAction'
 
 class DeckList extends Component {
 
+  _emptyDeckListMessage = 'No Deck Exist';
+
   componentDidMount() {
 
     const { dispatchGetDeckList } = this.props;
@@ -51,9 +53,13 @@ class DeckList extends Component {
 
       return (
 
-        <View key={`deck_container`}>
-          <Text key={`deck_name`}>
-            No deck Exist
+        <View key={`deck_container`}
+          style={{ height: 80, justifyContent: 'center', alignItems: 'center', backgroundColor: LightSkyBlue, marginTop: 5, marginLeft: 10, marginRight: 10, borderRadius: 15 }}
+        >
+          <Text key={`deck_name`}
+            style={{ fontSize: 18 }}
+          >
+            {this._emptyDeckListMessage}
           </Text>
         </View>
 
