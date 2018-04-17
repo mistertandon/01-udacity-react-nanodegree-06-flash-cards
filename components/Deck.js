@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { capitalizedFirstLetter } from './../utils/helpers'
-import { LightBlue, Red, Lime } from './../utils/colors'
+import { Red, DodgerBlue, White } from './../utils/colors'
 import Card from './Card'
 import { HeaderLeftRoute } from './HeaderLeftRoute'
 
@@ -34,11 +34,11 @@ class Deck extends Component {
     const { cards } = this.props;
 
     return (
-      <View style={{ backgroundColor: LightBlue }}>
-        <Text>
+      <View style={{ backgroundColor: Red, height: 80, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', borderRadius: 15, marginLeft: 20, marginRight: 20 }}>
+        <Text style={{ color: White, fontWeight: 'bold', fontSize: 20 }}>
           {capitalizedFirstLetter(deck)}
         </Text>
-        <Text>
+        <Text style={{ color: White, marginTop: 5, fontWeight: 'bold', fontSize: 16, fontStyle: 'italic' }}>
           {cards.length} Cards
         </Text>
       </View>
@@ -56,12 +56,12 @@ class Deck extends Component {
 
     return (
 
-      <TouchableOpacity style={{ marginTop: 40, backgroundColor: Red }}
+      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: White, height: 60, borderRadius: 15 }}
         onPress={() => {
 
           this.navigateToAddCardScreen()
         }}>
-        <Text>{this._addCardLabel}</Text>
+        <Text style={{ color: DodgerBlue }}>{this._addCardLabel}</Text>
       </TouchableOpacity>
 
     )
@@ -73,7 +73,7 @@ class Deck extends Component {
 
     return (
 
-      <TouchableOpacity style={{ marginTop: 40, backgroundColor: Lime }}
+      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: DodgerBlue, height: 60, marginTop: 15, borderRadius: 15 }}
         onPress={() => {
 
           this.props.navigation.navigate('Card', {
@@ -81,7 +81,7 @@ class Deck extends Component {
           })
         }}
       >
-        <Text>{this._startQuizLabel}</Text>
+        <Text style={{ color: White }}>{this._startQuizLabel}</Text>
       </TouchableOpacity>
 
     )
@@ -95,7 +95,7 @@ class Deck extends Component {
 
         {this.renderDeckTitle()}
 
-        <View>
+        <View style={{ alignSelf: 'stretch', marginLeft: 20, marginRight: 20 }}>
           {this.renderAddCardButton()}
           {this.renderStartQuizButton()}
         </View>
