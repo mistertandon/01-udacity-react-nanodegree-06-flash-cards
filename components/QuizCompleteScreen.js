@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 
 import { setNotification, clearNotificationObject } from './../utils/notification'
+import { DodgerBlue, White } from '../utils/colors';
 
 export class QuizCompleteScreen extends Component {
 
@@ -29,6 +30,23 @@ export class QuizCompleteScreen extends Component {
       .then(() => setNotification)
   }
 
+  renderResult = () => {
+
+    const { correctQuestions } = this.state;
+
+    return (
+
+      <View
+        style={{ height: 70, justifyContent: 'center', alignItems: 'center', backgroundColor: DodgerBlue, borderRadius: 15 }}
+      >
+        <Text style={{ color: White }}>
+          Correct Answer {correctQuestions}
+        </Text>
+      </View>
+
+    )
+  }
+
   render() {
 
     const { totalQuestions, correctQuestions, backToDeckLabel } = this.state;
@@ -39,42 +57,41 @@ export class QuizCompleteScreen extends Component {
 
       return (
 
-        <View>
+        <View style={{ flex: 1, marginTop: 20, marginLeft: 10, marginRight: 10, justifyContent: 'space-between', paddingBottom: 150 }}>
 
-          <Text>
-            Correct Answer {correctQuestions}
-          </Text>
+          {this.renderResult()}
+          <View>
+            <TouchableOpacity onPress={
+              () => {
 
-          <TouchableOpacity onPress={
-            () => {
-
-              navigation.navigate('Card', {
-                deck
-              })
+                navigation.navigate('Card', {
+                  deck
+                })
+              }
             }
-          }
-            style={{ margin: 10 }}
-          >
-            <Text>
-              {this._restartQuizLabel}
-            </Text>
-          </TouchableOpacity>
+              style={{ margin: 10 }}
+            >
+              <Text>
+                {this._restartQuizLabel}
+              </Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={
-            () => {
+            <TouchableOpacity onPress={
+              () => {
 
-              navigation.navigate('Deck', {
-                deck
-              })
+                navigation.navigate('Deck', {
+                  deck
+                })
+              }
             }
-          }
-            style={{ margin: 10 }}
-          >
-            <Text>
-              {backToDeckLabel}
-            </Text>
-          </TouchableOpacity>
+              style={{ margin: 10 }}
+            >
+              <Text>
+                {backToDeckLabel}
+              </Text>
+            </TouchableOpacity>
 
+          </View>
         </View>
 
       )
