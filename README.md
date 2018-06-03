@@ -1,6 +1,6 @@
 ## Mobile Flashcards Project ( Udacity React Nanodegree III project )
 
-####Installation steps :
+####Installation steps:
 
 1. Navigate up to the root folder
 2. Run `npm install`
